@@ -8,20 +8,20 @@ console.log ZData
 class ZMyData extends ZData
   constructor: () ->
     super()
-    # super({
-    #   a: 5,
-    #   name: "zed"
-    #   })
+    super({
+      a: 5,
+      name: "zed"
+      })
 
 
 class ZTestClass
   constructor: () ->
     @data = new ZMyData
     @data.events.add "change.a", @changed
-    @data.set("a", 6)
+    @data.set("a", @data.get("a", 0) + 1)
 
-  changed: () ->
-    console.log "a changed"
+  changed: (args) ->
+    console.log "a changed: #{args.key} = #{args.value}"
 
 
 describe "zdata", () ->

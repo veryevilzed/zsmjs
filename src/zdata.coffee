@@ -15,6 +15,6 @@ class ZData
   set: (key, value) =>
     before = @data[key]
     @data[key] = value
-    @events.invoke("change.#{key}", {before: before, value: value})
+    @events.invoke("change.#{key}", {key: key, before: before, value: value})
 
 module.exports = ZData
