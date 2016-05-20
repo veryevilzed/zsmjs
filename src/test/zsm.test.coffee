@@ -76,3 +76,16 @@ describe "zsm parent", () ->
     zsm.init("init")
     zsm.signal("")
     assert.equal zsm.current.data, "READY"
+
+
+_ = require('lodash')
+
+describe "t", () ->
+  a = [1,2,3]
+
+  _.remove(a, (i) -> i == 1 )
+
+  for i in t?
+    console.log i
+
+  assert.equal a[0], 2

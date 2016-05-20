@@ -1,0 +1,21 @@
+{
+  "name": "zsmjs",
+  "description": "",
+  "main": "lib/zsm.min.js",
+  "authors": [
+    "Dmitry Vysochin <dmitry.vysochin@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/veryevilzed/zsmjs",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "^4.12.0"
+  }
+}

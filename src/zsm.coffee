@@ -7,7 +7,6 @@ class ZSM
       v.name = k
       @add(v)
 
-
   add: (state) ->
     @states[state.name] = state
     state.parent = this
@@ -17,26 +16,25 @@ class ZSM
       throw "State already set"
     @__change(stateName, args)
 
-  __change: (stateName, args = {}) ->
-    if (@current && @current.exit)
-      res = @current.exit args
-      if (res)
-        stateName = res
-    @current = @states[stateName]
-    if (@current.enter)
-      res = @current.enter args
-      if (res)
-        @__change(res)
-
   change: (stateName, args = {}) ->
     @__change(stateName, args)
 
   signal: (args = {}) ->
-    if (@current && @current.signal)
-      res = @current.signal args
-      if res
-        @__change(res)
+    @__change(@current?.signal? args)
 
+  __update: (deltaTime) ->
+      @current?.__update?(deltaTime)
+
+  __change: (stateName, args = {}) ->
+    if !stateName
+      return
+    @current?.__exit?()
+    res = @current?.exit? args
+    if (res)
+      stateName = res
+    @current = @states[stateName]
+    @current?.__enter?()
+    @__change(@current?.enter? args)
 
 
 module.exports = ZSM
