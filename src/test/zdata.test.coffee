@@ -18,10 +18,17 @@ class ZTestClass
   constructor: () ->
     @data = new ZMyData
     @data.events.add "change.a", @changed
+    @data.events.add "change.name", @changed
     @data.set("a", @data.get("a", 0) + 1)
+    @data.events.remove("change.name", @changed)
+    @data.set("a", @data.get("a", 0) + 1)
+    @data.events.clear(@changed)
+    @data.set("a", 99)
+    @data.set("name", "!!")
 
-  changed: (args) ->
+  changed: (args) =>
     console.log "a changed: #{args.key} = #{args.value}"
+
 
 
 describe "zdata", () ->

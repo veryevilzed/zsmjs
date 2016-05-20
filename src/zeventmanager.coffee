@@ -12,15 +12,17 @@ class ZEventManager
   add: (name, listener) =>
     if !@listeners[name]
       @listeners[name] = []
-    @listeners[name].push listener
+    if @listeners[name].indexOf(listener) == -1
+      @listeners[name].push listener
 
 
   remove: (name, method) =>
     ls = @listeners[name] || []
+    console.log ls
     _.remove(ls, (o) -> o == method)
 
   clear: (method) =>
-    for k,v in @listeners
-      remove(k, method)
+    for k,v of @listeners
+      @remove(k, method)
 
 module.exports = ZEventManager
