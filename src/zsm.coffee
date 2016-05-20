@@ -9,9 +9,10 @@ class ZSM
 
   add: (state) ->
     @states[state.name] = state
-    state.parent = this
+    state.parent = @
+    state.change = (name) -> @change(name)
 
-  init: (stateName, args = {}) ->
+  init: (stateName = "init", args = {}) ->
     if (@current != null)
       throw "State already set"
     @__change(stateName, args)
@@ -22,7 +23,7 @@ class ZSM
   signal: (args = {}) ->
     @__change(@current?.signal? args)
 
-  __update: (deltaTime) ->
+  __update: (deltaTime) =>
       @current?.__update?(deltaTime)
 
   __change: (stateName, args = {}) ->

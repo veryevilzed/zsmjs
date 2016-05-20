@@ -6,23 +6,29 @@ class ZSMState
     @name = name
     @timers = { one: [], loop: [] }
 
-  __update_timer(deltaTime) ->
+  __update_timer: (deltaTime) ->
+
     if !@timers
       return
 
-    for o in @timers.one?
-      o.timeout -= deltaTime
-      if (o.timeout<=0)
-        o.exec()
-        @timers.splice(@timers.one.indexOf(o), 1)
 
-      for o in @timers.loop?
+
+    for o in @timers.one || []
+      if !o.used
         o.timeout -= deltaTime
         if (o.timeout<=0)
           o.exec()
-          o.timeout = o.init
+          o.used = true;
 
-  __update: (deltaTime) ->
+
+
+    for o in @timers.loop || []
+      o.timeout -= deltaTime
+      if (o.timeout<=0)
+        o.exec()
+        o.timeout = o.init
+
+  __update: (deltaTime) =>
     @__update_timer?(deltaTime)
     @update?(deltaTime)
 
@@ -35,7 +41,7 @@ class ZSMState
       callback = initTimeout
       initTimeout = timeout
 
-    @timers.one.push( { exec: callback, timeout: timeout, init: initTimeout } )
+    @timers.loop.push( { exec: callback, timeout: timeout, init: initTimeout } )
     callback
 
   __enter: (args) ->
@@ -46,5 +52,4 @@ class ZSMState
     for o in @timers.loop?
       o.timeout = o.init
 
-  a: one 5, () ->
-    2390423984
+module.exports = ZSMState
