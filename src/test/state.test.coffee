@@ -33,6 +33,9 @@ class SReady extends ZSMState
   enter: (args) =>
     console.log "--- READY ---"
 
+  signal: (name) =>
+    console.log "RESET: #{name}"
+    @parent.change("init")
 
 describe "state base", () ->
 
@@ -52,3 +55,15 @@ describe "state base", () ->
 
   assert.equal zsm.states.init.t1, 1
   assert.equal zsm.states.init.t2, 5
+  zsm.signal("reset")
+
+  zsm.__update(1)
+  zsm.__update(1)
+  zsm.__update(1)
+  zsm.__update(1)
+  zsm.__update(1)
+  zsm.__update(1)
+
+  assert.equal zsm.states.init.t1, 2
+  assert.equal zsm.states.init.t2, 10
+  assert.equal zsm.current.name, "ready"

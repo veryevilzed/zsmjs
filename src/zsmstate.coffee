@@ -11,16 +11,12 @@ class ZSMState
     if !@timers
       return
 
-
-
     for o in @timers.one || []
       if !o.used
         o.timeout -= deltaTime
         if (o.timeout<=0)
           o.exec()
           o.used = true;
-
-
 
     for o in @timers.loop || []
       o.timeout -= deltaTime
@@ -45,11 +41,12 @@ class ZSMState
     callback
 
   __enter: (args) ->
-    for o in @timers.one?
+
+    for o in @timers.one || []
       o.timeout = o.init
       o.used = false
 
-    for o in @timers.loop?
+    for o in @timers.loop || []
       o.timeout = o.init
 
 module.exports = ZSMState
