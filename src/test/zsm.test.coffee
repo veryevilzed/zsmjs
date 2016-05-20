@@ -77,6 +77,11 @@ describe "zsm parent", () ->
     zsm.signal("")
     assert.equal zsm.current.data, "READY"
 
+class Init
+
+describe "zsm state", () ->
+  zsm = new ZSM();
+
 
 _ = require('lodash')
 
