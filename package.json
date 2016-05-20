@@ -6,9 +6,11 @@
   "devDependencies": {
     "coffee-loader": "^0.7.2",
     "webpack": "^1.12.11",
-    "coffee-script": "^1.10.0"
+    "coffee-script": "^1.10.0",
+    "mocha": "^2.4.5"
   },
   "scripts": {
     "build": "./node_modules/.bin/webpack",
+    "test": "./node_modules/.bin/mocha --compilers=coffee:coffee-script/register src/test/*.coffee"
   }
 }
