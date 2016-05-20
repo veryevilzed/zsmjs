@@ -1,0 +1,14 @@
+{
+  "name": "zsmjs",
+  "version": "0.0.1",
+  "author": "Dmitry Vysochin <dmitry.vysochin@gmail.com>",
+  "main": "lib/zsm.min.js",
+  "devDependencies": {
+    "coffee-loader": "^0.7.2",
+    "webpack": "^1.12.11",
+    "coffee-script": "^1.10.0"
+  },
+  "scripts": {
+    "build": "./node_modules/.bin/webpack",
+  }
+}
