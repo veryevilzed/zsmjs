@@ -10,7 +10,7 @@ var config = {
 
   output: {
     filename: 'zsm.min.js',
-    path: __dirname + '/build',
+    path: __dirname + '/lib',
   },
   resolve: {
       root: [__dirname, path.join(__dirname, "bower_components")],
