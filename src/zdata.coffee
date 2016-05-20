@@ -1,5 +1,5 @@
 
-ZEventManager = require "./zeventmanager"
+ZEventManager = require "./zeventmanager.coffee"
 
 class ZData
   constructor: (data = {}) ->
