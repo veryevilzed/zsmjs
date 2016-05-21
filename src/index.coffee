@@ -1,5 +1,11 @@
 
 ZSM = require('./zsm.coffee')
-ZSM = require('./zeventmanager.coffee')
-ZSM = require('./zsmstate.coffee')
-ZSM = require('./zdata.coffee')
+ZEventManager = require('./zeventmanager.coffee')
+ZSMState = require('./zsmstate.coffee')
+ZData = require('./zdata.coffee')
+
+module.exports = () ->
+  {
+    ZSM: ZSM,
+    ZEventManager: ZEventManager
+  }
