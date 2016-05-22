@@ -1,7 +1,7 @@
 {
   "name": "zsmjs",
   "description": "",
-  "main": "lib/zsm.min.js",
+  "main": "index.coffee",
   "authors": [
     "Dmitry Vysochin <dmitry.vysochin@gmail.com>"
   ],
